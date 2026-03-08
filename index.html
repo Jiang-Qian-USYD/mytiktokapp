@@ -433,7 +433,7 @@
     function loginWithTikTok() {
       const redirectUri = encodeURIComponent(REDIRECT_URI);
       const state = Math.random().toString(36).substring(2, 15);
-      const scope = 'user.info.basic,video.list';
+      const scope = 'user.info.basic,user.info.profile,user.info.stats,video.list';
 
       const authUrl =
         'https://www.tiktok.com/v2/auth/authorize/' +
