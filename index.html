@@ -428,9 +428,10 @@
 
   <script>
     const CLIENT_KEY = 'sbawtpglai5rj58gsd';
+    const REDIRECT_URI = 'https://jiang-qian-usyd.github.io/mytiktokapp/';
 
     function loginWithTikTok() {
-      const redirectUri = encodeURIComponent(window.location.origin + window.location.pathname);
+      const redirectUri = encodeURIComponent(REDIRECT_URI);
       const state = Math.random().toString(36).substring(2, 15);
       const scope = 'user.info.basic,video.list';
 
