@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TikFlow – Personal TikTok Content Tool</title>
+  <meta name="tiktok-developers-site-verification" content="P4AuP2gQORfjYqhT7nivcVjs4IPziSiA">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -296,6 +297,42 @@
     }
     footer a:hover { color: var(--text); }
 
+    /* TikTok Login Button */
+    .btn-tiktok {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #000;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .btn-tiktok:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.35);
+      box-shadow: 0 0 30px rgba(37,244,238,0.15);
+    }
+
+    /* Success box */
+    .success-box {
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(37,244,238,0.07);
+      border: 1px solid rgba(37,244,238,0.25);
+      border-radius: 12px;
+      padding: 20px 28px;
+      animation: fadeUp 0.4s ease both;
+    }
+    .success-icon { font-size: 1.6rem; }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -333,9 +370,22 @@
     <p class="subtitle">
       TikFlow is a personal tool for scheduling, analyzing, and managing TikTok content — built on the official TikTok API.
     </p>
-    <div class="cta-row">
-      <a href="#features" class="btn-primary">Explore Features</a>
-      <a href="privacy.html" class="btn-ghost">Privacy Policy</a>
+    <div class="cta-row" id="ctaRow">
+      <button class="btn-tiktok" onclick="loginWithTikTok()">
+        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+          <path d="M34.1 5h-6.6v26.1c0 3-2.4 5.4-5.4 5.4s-5.4-2.4-5.4-5.4 2.4-5.4 5.4-5.4c.5 0 1 .1 1.5.2V19c-.5-.1-1-.1-1.5-.1-6.6 0-12 5.4-12 12s5.4 12 12 12 12-5.4 12-12V18.5c2.3 1.6 5 2.5 7.9 2.5v-6.6c-4.4 0-7.9-4-7.9-9.4z" fill="white"/>
+        </svg>
+        Login with TikTok
+      </button>
+      <a href="#features" class="btn-ghost">Learn More</a>
+    </div>
+
+    <div class="success-box" id="successBox" style="display:none;">
+      <div class="success-icon">✅</div>
+      <div>
+        <strong>Authorization Successful!</strong>
+        <p style="color:var(--muted);font-size:0.88rem;margin-top:4px;">TikFlow is now connected to your TikTok account.</p>
+      </div>
     </div>
   </section>
 
@@ -376,5 +426,50 @@
     </div>
   </footer>
 
+  <script>
+    const CLIENT_KEY = 'awqjsyp5ibnujyp7';
+
+    function loginWithTikTok() {
+      const redirectUri = encodeURIComponent(window.location.origin + window.location.pathname);
+      const state = Math.random().toString(36).substring(2, 15);
+      const scope = 'user.info.basic,video.list';
+
+      const authUrl =
+        'https://www.tiktok.com/v2/auth/authorize/' +
+        '?client_key=' + CLIENT_KEY +
+        '&response_type=code' +
+        '&scope=' + encodeURIComponent(scope) +
+        '&redirect_uri=' + redirectUri +
+        '&state=' + state;
+
+      sessionStorage.setItem('tiktok_state', state);
+      window.location.href = authUrl;
+    }
+
+    // Handle callback: TikTok redirects back with ?code=xxx&state=xxx
+    (function handleCallback() {
+      const params = new URLSearchParams(window.location.search);
+      const code  = params.get('code');
+      const state = params.get('state');
+      const error = params.get('error');
+
+      if (error) {
+        console.warn('TikTok auth error:', error);
+        return;
+      }
+
+      if (code) {
+        // Show success UI
+        document.getElementById('ctaRow').style.display = 'none';
+        document.getElementById('successBox').style.display = 'flex';
+
+        // Clean URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+
+        console.log('Authorization code received:', code);
+        // In a real app, send `code` to your backend to exchange for access token
+      }
+    })();
+  </script>
 </body>
 </html>
