@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy – TikFlow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f; --surface: #111118; --border: rgba(255,255,255,0.07);
+      --accent: #fe2c55; --accent2: #25f4ee; --text: #f0f0f5; --muted: #7a7a9a;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 60px; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: rgba(10,10,15,0.9); backdrop-filter: blur(16px); z-index: 10;
+    }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; text-decoration: none; color: var(--text); }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.85rem; }
+    nav a:hover { color: var(--text); }
+    main { max-width: 720px; margin: 0 auto; padding: 80px 40px 120px; }
+    .page-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent2); margin-bottom: 12px; }
+    h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.4rem; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 60px; }
+    h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin: 44px 0 14px; color: var(--text); }
+    p { color: #c0c0d8; font-size: 0.95rem; margin-bottom: 16px; }
+    ul { padding-left: 20px; margin-bottom: 16px; }
+    li { color: #c0c0d8; font-size: 0.95rem; margin-bottom: 8px; }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+    footer { text-align: center; padding: 40px; color: var(--muted); font-size: 0.82rem; border-top: 1px solid var(--border); }
+    @media (max-width: 640px) { nav { padding: 18px 24px; } main { padding: 60px 24px 80px; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">TikFlow</a>
+    <a href="terms.html">Terms of Service</a>
+  </nav>
+
+  <main>
+    <div class="page-label">Legal</div>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Last updated: January 1, 2025</p>
+
+    <p>TikFlow ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our personal developer tool that integrates with the TikTok API.</p>
+
+    <h2>1. Information We Collect</h2>
+    <p>When you authorize TikFlow through TikTok's official OAuth 2.0 login, we may collect:</p>
+    <ul>
+      <li>Your TikTok user ID and public profile information (username, avatar)</li>
+      <li>Video data you have explicitly authorized us to access</li>
+      <li>Analytics data associated with your TikTok account</li>
+    </ul>
+    <p>We do not collect your TikTok password. All authentication is handled directly by TikTok.</p>
+
+    <h2>2. How We Use Your Information</h2>
+    <p>We use the information we collect solely to:</p>
+    <ul>
+      <li>Provide the features of TikFlow you have authorized</li>
+      <li>Display your TikTok content and analytics within the tool</li>
+      <li>Schedule and post content on your behalf when you request it</li>
+    </ul>
+    <p>We do not use your data for advertising, profiling, or any purpose beyond the direct operation of this tool.</p>
+
+    <h2>3. Data Storage and Security</h2>
+    <p>We take reasonable precautions to protect your data. Access tokens obtained via TikTok OAuth are stored securely and used only to make authorized API requests on your behalf.</p>
+    <p>We do not sell, trade, or transfer your personal information to any third parties.</p>
+
+    <h2>4. TikTok API Data</h2>
+    <p>Our use of data obtained from the TikTok API complies with TikTok's Developer Terms of Service. We only request the minimum permissions necessary to provide the features of this tool.</p>
+
+    <h2>5. Data Retention</h2>
+    <p>You may revoke TikFlow's access to your TikTok account at any time through your TikTok account settings under "Manage App Permissions." Upon revocation, we will delete any stored access tokens associated with your account.</p>
+
+    <h2>6. Children's Privacy</h2>
+    <p>TikFlow is not intended for use by individuals under the age of 13. We do not knowingly collect personal information from children.</p>
+
+    <h2>7. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date.</p>
+
+    <h2>8. Contact</h2>
+    <p>If you have any questions about this Privacy Policy, please contact us. This is a personal developer project and can be reached through the GitHub repository associated with TikFlow.</p>
+
+    <hr/>
+    <p style="color: var(--muted); font-size: 0.85rem;">By using TikFlow, you acknowledge that you have read and understood this Privacy Policy.</p>
+  </main>
+
+  <footer>© 2025 TikFlow. Personal developer project. &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="terms.html">Terms of Service</a></footer>
+</body>
+</html>
